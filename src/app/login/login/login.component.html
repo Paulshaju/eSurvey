@@ -1,0 +1,123 @@
+<div class="main">
+    <mat-toolbar class="justify-between toolbar ">
+        <img src='../../../assets/images/logo.png' class="logo" />
+        <button mat-raised-button class="contactUsButton flex flex-center flex-middle px-3">
+            <span class="text-sm">Contact Us</span>
+        </button>
+    </mat-toolbar>
+    <div class="info-body">
+        <div class="flex flex-center flex-col h-full ml-3 w-2/4 loginContainer">
+            <div *ngIf="!getStarted">
+                <span class="title">E-Survey Shangri-La</span>
+                <p class="info">Climate change and global warming affect all regions around the world, and the Valley of
+                    Shangri-La is not
+                    an exception.Help Shangri-La City Council to implement Shangri-L Low Emission Zone by the end of
+                    2022 by
+                    offering your opinions.</p>
+                <button mat-raised-button class="get-startedButton mat-raised-button p-2 w-1/6"
+                    (click)="getStartedClicked()">
+                    <span class="font-weight-500 text-sm">Get Started</span>
+                </button>
+
+            </div>
+            <mat-card *ngIf="getStarted" class="card fadeindownAnimation">
+                <mat-card-content class="h-full mat-card-content">
+                    <div class="flex flex-center flex-col h-full p-5" *ngIf="!loginClicked">
+                        <div>
+                            <h1 class="loginTitle primary-text-color">Log in to SurveyShangri</h1>
+                            <p class="secondary-gray-color margin-remove-bottom">Welcome back!</p>
+                            <p class="secondary-gray-color">Please choose an option to begin the adventure.</p>
+                        </div>
+                        <div class="flex flex-between">
+                            <mat-card
+                                class="flex flex-center flex-col flex-middle loginCard mat-card mat-focus-indicator mr-2"
+                                aria-label="button" (click)="loginClicked = !loginClicked">
+                                <img src='../../../assets/images/user.svg' class="cardImg" />
+                                <p class="primary-text-color">Resident User</p>
+                            </mat-card>
+                            <mat-card
+                                class="flex flex-center flex-col flex-middle loginCard mat-card mat-focus-indicator">
+                                <img src='../../../assets/images/councilOfficer.svg' class="cardImg"  (click)="loginClicked = !loginClicked"/>
+                                <p class="primary-text-color" >Council Officer</p>
+                            </mat-card>
+                            
+
+                        </div>
+                        <div class="flex flex-center flex-middle py-6">
+                            <p class="margin-remove">Dont have an account yet?</p>
+                            <a href="/registerUser" class="mt-1 pl-2 primary-color cursor-pointer margin-remove" aria-label="button" (click)="registerUser()" >SignUp</a>
+                        </div>
+
+                    </div>
+                    <div class="flex flex-center fadeindownAnimation flex-col h-full p-3" *ngIf="loginClicked">
+                        <div class="flex flex-between">  
+                            <div>
+                                <h1 class="loginTitle margin-bottom-xs primary-text-color">Hello again!</h1>
+                                <p class="secondary-gray-color">Please enter your details to sign in.</p>
+                            </div>
+                            <img *ngIf="!loginFailed && !logginIn"src='../../../assets/images/user.svg' class="cardImg" />
+                            <img *ngIf="loginFailed && !logginIn" src='../../../assets/images/error.png' class="cardImg fadeindownAnimation" />
+                            <div *ngIf="logginIn">
+                                <svg class="spinner" width="40px" height="40px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                                 </svg>
+                            </div>
+                        </div>
+                      
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                            <div class="flex flex-col">
+                                <label>
+                                    <b>Email</b>
+                                </label>
+                                <mat-form-field appearance="outline" class="margin-top-xs">
+                                    <input matInput placeholder="Enter your email" type="email"
+                                        formControlName="userEmail">
+                                    <mat-icon matSuffix *ngIf="loginForm.get('userEmail')?.touched &&(loginForm.get('userEmail')?.hasError('required') || (loginForm.get('userEmail')?.invalid && loginForm.get('userEmail')?.dirty && loginForm.get('userEmail')?.value.length > 0))" class="error-red">
+                                        error</mat-icon>
+                                    <mat-error *ngIf="loginForm.get('userEmail')?.hasError('required')">You must enter a
+                                        value</mat-error>
+                                    <mat-error
+                                        *ngIf="loginForm.get('userEmail')?.invalid && loginForm.get('userEmail')?.dirty && loginForm.get('userEmail')?.value.length > 0">
+                                        Please enter a
+                                        valid email address</mat-error>
+                                </mat-form-field>
+
+                            </div>
+                            <div class="flex flex-col">
+                                <label>
+                                    <b>Password</b>
+                                </label>
+                                <mat-form-field appearance="outline" class="margin-top-xs">
+                                    <input matInput placeholder="Enter your password"
+                                        [type]="hide ? 'password' : 'text'" formControlName="password">
+                                    <mat-icon matSuffix *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched" class="error-red">
+                                        error</mat-icon>
+                                    <button mat-icon-button matSuffix (click)="hide = !hide"
+                                        *ngIf="!loginForm.get('password')?.hasError('required')"
+                                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                    </button>
+                                    <mat-error *ngIf="loginForm.get('password')?.hasError('required')">You must enter a
+                                        value</mat-error>
+                                </mat-form-field>
+                                <button mat-raised-button type="submit"
+                                    class="flex flex-middle margin-top-xs mat-raised-button p-2 signInButton w-full">
+                                    <mat-icon class="mr-32 margin-right">lock</mat-icon>
+                                    <span class="font-weight-500 text-sm">Sign In</span>
+                                </button>
+                                <mat-error *ngIf="loginFailed" class="mt-2">
+                                    Oops!!!Login Failed.Please try again.
+                                </mat-error>
+
+                            </div>
+
+                        </form>
+                    </div>
+
+                </mat-card-content>
+
+            </mat-card>
+        </div>
+    </div>
+
+</div>

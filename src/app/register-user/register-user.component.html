@@ -1,0 +1,194 @@
+<div class="main h-full">
+    <mat-card class="p-10 w-1/2 card fadeindownAnimation mainCard">
+        <mat-card-content>
+            <div class="p-5">
+                <div class="flex flex-between flex-middle">
+                    <h1 class="title">Create Account.</h1>
+                    <img src='../../../assets/images/logo.png' class="logo" />
+                </div>
+
+                <p class="gray-color">This information will be displayed publically so please be carefull what you
+                    share.</p>
+                <form [formGroup]="registrationForm">
+                    <div class="flex flex-col">
+                        <div class="flex flex-col">
+                            <label>
+                                <b>Email</b>
+                            </label>
+                            <mat-form-field appearance="outline" class="margin-top-xs hoverPrimaryColor">
+                                <input matInput placeholder="Enter your email" type="email" formControlName="userEmail">
+                                <mat-icon matSuffix
+                                    *ngIf="registrationForm.get('userEmail')?.touched &&(registrationForm.get('userEmail')?.hasError('required') || (registrationForm.get('userEmail')?.invalid && registrationForm.get('userEmail')?.dirty && registrationForm.get('userEmail')?.value.length > 0))"
+                                    class="error-red">
+                                    error</mat-icon>
+                                <mat-error *ngIf="registrationForm.get('userEmail')?.hasError('required')">You must
+                                    enter a
+                                    value</mat-error>
+                                <mat-error
+                                    *ngIf="registrationForm.get('userEmail')?.invalid && registrationForm.get('userEmail')?.dirty && registrationForm.get('userEmail')?.value.length > 0">
+                                    Please enter a
+                                    valid email address</mat-error>
+                            </mat-form-field>
+
+                        </div>
+
+                        <div class="flex">
+                            <div class="w-1/2">
+                                <label>
+                                    <b>Your name</b>
+                                </label>
+                                <mat-form-field appearance="outline" class="margin-top-xs w-full padding-right-xs">
+                                    <input matInput placeholder="Enter your full name" type="text"
+                                        formControlName="fullName">
+                                    <mat-icon matSuffix
+                                        *ngIf="registrationForm.get('fullName')?.touched &&(registrationForm.get('fullName')?.hasError('required') || (registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.dirty && registrationForm.get('fullName')?.value.length > 0))"
+                                        class="error-red">
+                                        error</mat-icon>
+                                    <mat-error *ngIf="registrationForm.get('fullName')?.hasError('required')">You must
+                                        enter a
+                                        value</mat-error>
+                                    <mat-error
+                                        *ngIf="registrationForm.get('fullName')?.invalid && registrationForm.get('fullName')?.dirty && registrationForm.get('fullName')?.value.length > 0">
+                                        Please enter a
+                                        valid name</mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <label>
+                                    <b>Your Date of Birth</b>
+                                </label>
+                                <mat-form-field appearance="outline" class="margin-top-xs w-full padding-right-xs">
+                                    <input matInput placeholder="Enter your dob" [matDatepicker]="picker"
+                                        [max]="maxDate" formControlName="dob">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+
+                                    <mat-error *ngIf="registrationForm.get('dob')?.hasError('required')">You must enter
+                                        a
+                                        value</mat-error>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <label>
+                                <b>Address</b>
+                            </label>
+                            <mat-form-field appearance="outline" class="margin-top-xs">
+                                <input matInput placeholder="Enter your address" type="text" formControlName="address">
+                                <mat-icon matSuffix
+                                    *ngIf="registrationForm.get('address')?.touched &&(registrationForm.get('address')?.hasError('required') || (registrationForm.get('userEmail')?.invalid && registrationForm.get('userEmail')?.dirty && registrationForm.get('userEmail')?.value.length > 0))"
+                                    class="error-red">
+                                    error</mat-icon>
+                                <mat-error *ngIf="registrationForm.get('userEmail')?.hasError('required')">You must
+                                    enter a
+                                    value</mat-error>
+
+                            </mat-form-field>
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <label>
+                                <b>SNI Number</b>
+                            </label>
+                            <mat-form-field appearance="outline" class="margin-top-xs">
+                                <input matInput placeholder="Enter your SNINumber" type="number"
+                                    formControlName="SNINumber">
+                                <mat-icon matSuffix
+                                    *ngIf="registrationForm.get('SNINumber')?.touched &&(registrationForm.get('SNINumber')?.hasError('required') || (registrationForm.get('SNINumber')?.invalid && registrationForm.get('SNINumber')?.dirty && registrationForm.get('SNINumber')?.value.length > 0))"
+                                    class="error-red">
+                                    error</mat-icon>
+                                <mat-error *ngIf="registrationForm.get('SNINumber')?.hasError('required')">You must
+                                    enter a
+                                    value</mat-error>
+                                <mat-error
+                                    *ngIf="registrationForm.get('SNINumber')?.invalid && registrationForm.get('SNINumber')?.dirty && !registrationForm.get('SNINumber')?.hasError('required')">
+                                    Please enter a
+                                    valid SNI value</mat-error>
+                            </mat-form-field>
+                        </div>
+
+
+
+                    </div>
+                    <div class="flex flex-col">
+                        <label>
+                            <b>Password</b>
+                        </label>
+                        <mat-form-field appearance="outline" class="margin-top-xs">
+                            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'"
+                                formControlName="password">
+                            <mat-icon matSuffix
+                                *ngIf="registrationForm.get('password')?.errors && registrationForm.get('password')?.touched"
+                                class="error-red">
+                                error</mat-icon>
+                            <mat-icon mat-icon-button matSuffix
+                                *ngIf="!registrationForm.get('password')?.hasError('required')" (click)="hide = !hide">
+                                {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            <!-- <button mat-icon-button matSuffix (click)="hide = !hide"
+                                *ngIf="!registrationForm.get('password')?.hasError('required')"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                
+                            </button> -->
+                            <mat-error *ngIf="registrationForm.get('password')?.hasError('required')">You must enter a
+                                value</mat-error>
+                        </mat-form-field>
+                        <!-- <label>
+                            <b>Confirm password</b>
+                        </label>
+                        <mat-form-field appearance="outline" class="margin-top-xs">
+                            <input matInput placeholder="Enter your password" type="text"
+                                formControlName="confirmPassword">
+                            <mat-icon matSuffix *ngIf="registrationForm.hasError('notSame') || (registrationForm.get('confirmPassword')?.errors && registrationForm.get('confirmPassword')?.touched)" class="error-red">
+                                error</mat-icon>
+                            <mat-error *ngIf="registrationForm.get('confirmPassword')?.hasError('required')">You must enter a
+                                value</mat-error>
+                            <mat-error *ngIf="registrationForm.hasError('notSame')">Password Mismatch</mat-error>
+                        </mat-form-field> -->
+                        <div>
+                            <div>
+                                <div class="flex flex-middle">
+                                    <input type="checkbox" formControlName="agreementRead" class="margin-right-m">
+                                    <span class="flex flex-center flex-middle mat-checkbox-label gray-color">I agree
+                                        with all
+                                        <p class="margin-remove-bottom mx-1 primary-color text-sm">Terms
+                                            and
+                                            Conditions</p> and
+                                        <p class="margin-remove-bottom mx-1 primary-color text-sm">Privacy
+                                            Policies</p>of E-Survey
+                                    </span>
+                                </div>
+                               
+                                <mat-error *ngIf="registrationForm.get('agreementRead')?.errors && registrationForm.invalid && registrationForm.dirty">
+                                    Please read the privacy policies</mat-error>
+
+                                <!--                                 
+                                <mat-checkbox class="example-margin" (change)="toogleChange($event)">
+                                   
+                                </mat-checkbox> -->
+
+
+                            </div>
+                            <button mat-raised-button type="submit" (click)="onSubmit()" *ngIf="!creatingUser"
+                                class="flex flex-middle margin-top-xs mat-raised-button flex-center p-2 registerButton w-full">
+                                <span class="font-weight-500 text-sm">Sign Up</span>
+                            </button>
+                            <div *ngIf="creatingUser" class="flex flex-center mt-2">
+                                <svg class="spinner" width="40px" height="40px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                                </svg>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+        </mat-card-content>
+    </mat-card>
+
+
+</div>

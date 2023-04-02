@@ -1,0 +1,158 @@
+<div class="w-full h-full fadeindownAnimation">
+    <mat-drawer-container class="example-container w-full h-full overflow-x-hidden" autosize>
+        <mat-drawer #drawer class="example-sidenav w-1/12 sideNav m-2 py-5" mode="side" opened>
+            <div class="flex flex-center flex-col flex-middle h-full">
+                <img src='../../../assets/images/logo.png' class="logo" />
+                <div class="flex flex-center flex-col flex-middle h-full w-full">
+                    <button mat-stroked-button
+                        class="sidenavButton mat-button position-relative flex flex-center flex-col flex-middle margin-bottom-l p-2 w-full">
+                        <img src='../../../assets/images/homeIcon.svg' class="icon" />
+                    </button>
+                    <button mat-stroked-button
+                        class="sidenavButton mat-button position-relative flex flex-center flex-col flex-middle margin-bottom-l p-2 w-full">
+                        <img src='../../../assets/images/newIcon.svg' class="icon" />
+                    </button>
+                    <button mat-stroked-button
+                        class="sidenavButton mat-button position-relative flex flex-center flex-col flex-middle margin-bottom-l p-2 w-full">
+                        <img src='../../../assets/images/surveyIcon.svg' class="icon" />
+                    </button>
+                    <button mat-stroked-button
+                        class="sidenavButton mat-button position-relative flex flex-center flex-col flex-middle margin-bottom-l p-2 w-full">
+                        <img src='../../../assets/images/settingsIcon.svg' class="icon" />
+                    </button>
+                </div>
+                <div class="w-full">
+                    <button mat-stroked-button
+                        class="sidenavButton mat-button flex flex-center position-relative flex-col flex-middle my-4 p-2 w-full"
+                        (click)="logOutClicked()">
+                        <img src='../../../assets/images/logout.svg' class="icon" />
+                    </button>
+                </div>
+
+            </div>
+
+        </mat-drawer>
+        <div class="h-full mainBody p-10 w-full">
+            <div class="flex mainContainer">
+                <div class="w-3/4 mb-2 full-width-smallscreen">
+                    <div class="mr-4">
+                        <div class="flex flex-between flex-middle h-20 mb-3 p-3 w-full">
+                            <div class="flex flex-middle">
+                                <img src='../../../assets/images/useraccount.jpg' class="imageIcon" />
+                                <div class="flex flex-baseline">
+                                    <p class="welcomTitle">Welcome back!</p>
+                                    <!-- <p class="name">{{name}}</p> -->
+                                </div>
+
+                            </div>
+
+                            <div class="flex flex-around">
+                                <button mat-icon-button class="flex flex-center mat-raised-button p-2 icon-Button">
+                                    <mat-icon>notifications</mat-icon>
+                                </button>
+
+                            </div>
+
+                            <!-- <div class="flex flex-middle h-full ml-8 w-4/6 searchBox pl-2">
+                                <mat-icon class="mr-2">search</mat-icon>
+                                <input class="" type="text" placeholder="Search">
+                            </div> -->
+                        </div>
+
+                    </div>
+                    <div>
+                        <p></p>
+                    </div>
+                    <div class="flex flex-evenly px-4 pb-4">
+                        <mat-card
+                            class="taskCard mat-card mat-focus-indicator fadeindownAnimation flex flex-center flex-col flex-middle cursor-pointer"
+                            (click)="changeView('add')">
+                            <img src='../../../assets/images/addTask.svg' class="icon p-2" />
+                            <div>
+                                <p class="margin-remove-bottom taskTitle">Add</p>
+                                <p class="taskSubtitle gray-color">Add questions</p>
+                            </div>
+
+                        </mat-card>
+                        <mat-card
+                            class="taskCard mat-card mat-focus-indicator fadeindownAnimation flex flex-center flex-col flex-middle cursor-pointer"
+                            (click)="changeView('edit')">
+                            <img src='../../../assets/images/editTask.svg' class="icon p-2 imageEdit" />
+                            <div>
+                                <p class="margin-remove-bottom taskTitle">Edit</p>
+                                <p class="taskSubtitle gray-color">Edit questions</p>
+                            </div>
+
+                        </mat-card>
+                        <mat-card
+                            class="taskCard mat-card mat-focus-indicator fadeindownAnimation flex flex-center flex-col flex-middle cursor-pointer"
+                            (click)="changeView('view')">
+                            <img src='../../../assets/images/pollanalysis.svg' class="icon p-2 imageEdit" />
+                            <div>
+                                <p class="margin-remove-bottom taskTitle">View</p>
+                                <p class="taskSubtitle gray-color">View responses</p>
+
+                            </div>
+
+                        </mat-card>
+                    </div>
+                    <div class="pt-6" [ngSwitch]="switch">
+                        <ng-container *ngSwitchCase="'default'">
+                            <app-scatter-chart (result)=viewTotalResponse($event)></app-scatter-chart>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'add'">
+                            <app-add-questions></app-add-questions>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'edit'">
+                            <app-edit-questions></app-edit-questions>
+                        </ng-container>
+                        <ng-container *ngSwitchCase="'view'">
+                            <app-view-response></app-view-response>
+                        </ng-container>
+                    </div>
+                    <div>
+
+                    </div>
+
+                </div>
+
+                <div class="mr-4 w-1/4">
+                    <mat-card class="backgroundImage mat-card mat-focus-indicator fadeindownAnimation">
+                        <mat-card-content>
+                            <p class="taskTitle">
+                              Analytics:  
+                            </p>
+                            <div class="ml-2">
+                                <img src='../../../assets/images/responses.svg' class="icon p-2 imageEdit" />
+                                <div class="responseBox p-2">
+                                    <p class="gray-color">Total Responses Recieved:</p>
+                                <p class="responseTitle">{{totalResponse}}</p>
+                                </div>
+
+                            </div>
+                           
+                            
+                        </mat-card-content>
+
+                    </mat-card>
+                    <!-- <mat-card class="backgroundImage mat-card mat-focus-indicator fadeindownAnimation">
+                        <div class="">
+
+
+                        </div>
+                    </mat-card> -->
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+    </mat-drawer-container>
+
+</div>

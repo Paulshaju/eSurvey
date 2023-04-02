@@ -1,0 +1,309 @@
+@import '../../../assets/styles/vars.scss';
+@import '../../../assets/styles/mixin.scss';
+
+.logo{
+    
+    height: 30px;
+    width: 30px;
+}
+.sideNav{
+    border: 0px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+    background: #212642;
+    border-radius: 18px;
+}
+.sidenavButton{
+    &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -4%;
+        border-radius: 4px;
+        width: 0;
+        height: 3px;
+        background-color: #3EA9E1;
+        transition: .4s width linear;
+      }
+      
+      &.left:after,
+      &.center:after,
+      &.right:after {
+        width: 0px;
+      }
+      
+      &.center:after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      &.right:after  {
+        left: auto;
+        right: 0;
+      }
+      
+      &:hover {
+        background-color: #000001;
+        border-radius: 4px;
+        &:after {
+          width: 100%;
+        }
+      }
+   
+}
+.mainBody{
+    background-color: #F9FBFC;
+    @media (max-width: 960px) {
+        padding: 1.5rem !important;
+      }
+}
+.mainDiv{
+    @media (max-width: 960px) {
+        width: 100% !important;
+      }
+}
+.welcomeBox{
+    @media (max-width: 960px) {
+        flex-direction: column;
+      }
+}
+.subBodyBox{
+    @media (max-width: 960px) {
+        flex-direction: column;
+      }
+}
+.imageIcon{
+    height: 60px;
+    width: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+}
+.title{
+    font-size: smaller;
+    font-weight: 700;
+}
+
+
+.toolbarbox{
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+    border: 1px solid #DCE5EB;
+    border-radius: 8px;
+}
+.backgroundImage{
+    // background-image: url("../../../assets/images/stars.png");
+    background-size: cover;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+    background-color: #F9FBFC;
+    border: 1px solid #DCE5EB;
+    // background-image: linear-gradient(-0.17deg, rgb(126, 43, 235) 0%, rgb(34, 233, 213) 100%);
+}
+.newstrending{
+    font-size: 16px;
+    font-weight: 600;
+}
+.newsCard{
+    border-radius: 8px;
+    border: 1px solid #DCE5EB;
+    min-width: 200px !important;
+}
+.slider{
+    display: flex;
+    max-width: 100vw;
+	overflow-y: hidden;
+	overflow-x: scroll !important;
+	scroll-behavior: smooth;
+}
+.cardImage{
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+.newsImage{
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+    height: 150px;
+    width: 250px;
+    object-fit: cover;
+}
+.authorName{
+    font-weight: 300;
+}
+.welcomTitle{
+    font-size: 25px;
+    margin-left: 10px;
+    font-weight: 300;
+}
+.name{
+    font-size: 30px;
+    font-weight: 500;
+    margin-left: 10px;
+    color: #156aa1;
+
+}
+.questionBlock{
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+    height: 350px;
+}
+.icon-Button{
+    border: 1px solid #DCE5EB;
+    border-radius: 4px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+}
+.newImage{
+    object-fit: cover;
+    border-radius: 8px;
+    width: 100%;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+    // animation: slideShow 10s infinite ease-out;
+}
+.subTitle{
+    color: #a7a7a7;
+    text-shadow: 0px 4px 3px rgb(0 0 0 / 40%), 0px 8px 13px rgb(0 0 0 / 10%), 0px 18px 23px rgb(0 0 0 / 10%);
+    @media (max-width: 960px) {
+        font-size: 10px;
+      }
+}
+.coverTitle{
+    position: absolute;
+    top: 0%;
+    border-radius: 8px;
+    z-index: 1;
+    background-color: #09090961;
+    @media (max-width: 960px) {
+        padding: 0.5rem !important;
+      }
+}
+// @keyframes slideShow{
+//     0%{
+//         opacity: 0;
+//     }
+//     50%{
+//         opacity:1;
+//     }
+//     80%{
+//         opacity: 0 ;
+//     }
+//     100%{
+//         opacity: 0;
+//     }
+// }
+
+.font-family-audiowide{
+    font-family: $font-family-audiowide !important;
+}
+.searchBox{
+    border: 1px solid #DCE5EB;
+    border-radius: 8px;
+}
+.featuredBlock{
+    width: 70px;
+    background-color: #09090961;
+    border-radius: 3px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+}
+.newsBox{
+    @media (max-width: 960px) {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        display: flex !important;
+        height: 100%;
+        margin-top: 20px;
+      }
+}
+.newsTitle{
+    color: #ffff;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 40px;
+    text-shadow: 0px 4px 3px rgba(0,0,0,0.4),
+    0px 8px 13px rgba(0,0,0,0.1),
+    0px 18px 23px rgba(0,0,0,0.1);;
+    @media (max-width: 960px) {
+        font-size: 15px;
+        line-height: 20px;
+      }
+}
+.surveyBlock{
+    border-radius: 8px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+    // background-image: url("../../../assets/images/stars.png");
+    background-size: cover;
+    @media (max-width: 960px) {
+        height: 100%;
+        flex-direction: column;
+      }
+
+}
+.surveyImage{
+    height: 180px;
+    object-fit: contain;
+}
+.posterTitle{
+    line-height: 40px;
+    font-size: 30px;
+    font-family:$font-family-audiowide !important;
+    @media (max-width: 960px) {
+        font-size: 20px;
+        line-height: 18px;
+        margin-top: 12px;
+      }
+}
+.trendinnewsBox{
+    @media (max-width: 960px) {
+        width: 100%;
+      }
+}
+.getStartedButton{
+    background-color: #22E9D5;
+    border-radius: 4px;
+    color: #FFFFFF;
+    box-shadow: 0px 0px 4px #22e9d5;
+}
+.fadeindownAnimation{
+    animation: fadeindown ease 1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+    animation-fill-mode:forwards; /*when the spec is finished*/
+    -webkit-animation: fadeindown ease 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/ 
+    -moz-animation: fadeindown ease 1s;
+    -moz-animation-iteration-count: 1;
+    -moz-transform-origin: 50% 50%;
+    -moz-animation-fill-mode:forwards; /*FF 5+*/
+    -o-animation: fadeindown ease 1s;
+    -o-animation-iteration-count: 1;
+    -o-transform-origin: 50% 50%;
+    -o-animation-fill-mode:forwards; /*Not implemented yet*/
+    -ms-animation: fadeindown ease 1s;
+    -ms-animation-iteration-count: 1;
+    -ms-transform-origin: 50% 50%;
+    -ms-animation-fill-mode:forwards; /*IE 10+*/
+  }
+  
+  @keyframes fadeindown{
+    0% { opacity:0; transform:  translate(0px,-25px);}
+    100% { opacity:1; transform:  translate(0px,0px);}
+  }
+  
+  @-moz-keyframes fadeindown{
+    0% { opacity:0; -moz-transform:  translate(0px,-25px);}
+    100% { opacity:1; -moz-transform:  translate(0px,0px);}
+  }
+  
+  @-webkit-keyframes fadeindown{
+    0% { opacity:0; -webkit-transform:  translate(0px,-25px);}
+    100% { opacity:1; -webkit-transform:  translate(0px,0px);}
+  }
+  
+  @-o-keyframes fadeindown{
+    0% { opacity:0; -o-transform:  translate(0px,-25px);}
+    100% { opacity:1; -o-transform:  translate(0px,0px);}
+  }
+  @-ms-keyframes fadeindown{
+    0% { opacity:0; -ms-transform:  translate(0px,-25px);}
+    100% { opacity:1; -ms-transform:  translate(0px,0px);}
+  }

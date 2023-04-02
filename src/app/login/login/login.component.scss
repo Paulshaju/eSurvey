@@ -1,0 +1,203 @@
+@import '../../../assets/styles/mixin.scss';
+@import '../../../assets/styles/vars.scss';
+
+.main{
+    background-image: url("../../../assets/images/Artboard1.png");
+    height: 100%;
+    background-size: cover;
+    padding: 20px;
+    @include breakpoint-lt-m {
+      background-position-x: center;
+      background-repeat: no-repeat;
+      background-size: contain !important;
+    }
+    @include  breakpoint-m{
+      background-position-x: center;
+      background-repeat: no-repeat;
+      background-size: contain !important;
+    }
+}
+.loginContainer{
+  @include breakpoint-lt-m{
+    width: 100% !important;
+    padding-right: 18px;
+  }
+  
+}
+.logo{
+    height: 30px;
+}
+.toolbar{
+    top: 20px;
+    background: transparent;
+}
+.contactUsButton{
+    border: 1px solid #FFFFFF;
+    border-radius: 40px;
+}
+.title{
+    font-size: 40px;
+    font-family: "roboto";
+    line-height: 70px;
+    font-weight: 500;
+    color: #2D373C;
+    @include breakpoint-lt-m {
+      font-size: 30px;
+      line-height: 30px;
+      }
+
+}
+.info-body{
+    height: 80%;
+}
+.info{
+    color: #617684;
+    width: 79%;
+    font-weight: 400;
+}
+.get-startedButton{
+    background-color: #22E9D5;
+    border-radius: 40px;
+    color: #FFFFFF;
+    box-shadow: 0px 0px 15px #22e9d5;
+    width: 250px;
+}
+.card{
+    height: 400px;
+    width: 400px;
+    border-radius: 8px;
+    border: 1px solid #F2F3F8;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+    background-color: #F9FBFC;
+    @include breakpoint-lt-m{
+      width: auto;
+    }
+}
+.fadeindownAnimation{
+    animation: fadeindown ease 1s;
+    animation-iteration-count: 1;
+    transform-origin: 50% 50%;
+    animation-fill-mode:forwards; /*when the spec is finished*/
+    -webkit-animation: fadeindown ease 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/ 
+    -moz-animation: fadeindown ease 1s;
+    -moz-animation-iteration-count: 1;
+    -moz-transform-origin: 50% 50%;
+    -moz-animation-fill-mode:forwards; /*FF 5+*/
+    -o-animation: fadeindown ease 1s;
+    -o-animation-iteration-count: 1;
+    -o-transform-origin: 50% 50%;
+    -o-animation-fill-mode:forwards; /*Not implemented yet*/
+    -ms-animation: fadeindown ease 1s;
+    -ms-animation-iteration-count: 1;
+    -ms-transform-origin: 50% 50%;
+    -ms-animation-fill-mode:forwards; /*IE 10+*/
+  }
+  
+  @keyframes fadeindown{
+    0% { opacity:0; transform:  translate(0px,-25px);}
+    100% { opacity:1; transform:  translate(0px,0px);}
+  }
+  
+  @-moz-keyframes fadeindown{
+    0% { opacity:0; -moz-transform:  translate(0px,-25px);}
+    100% { opacity:1; -moz-transform:  translate(0px,0px);}
+  }
+  
+  @-webkit-keyframes fadeindown{
+    0% { opacity:0; -webkit-transform:  translate(0px,-25px);}
+    100% { opacity:1; -webkit-transform:  translate(0px,0px);}
+  }
+  
+  @-o-keyframes fadeindown{
+    0% { opacity:0; -o-transform:  translate(0px,-25px);}
+    100% { opacity:1; -o-transform:  translate(0px,0px);}
+  }
+  @-ms-keyframes fadeindown{
+    0% { opacity:0; -ms-transform:  translate(0px,-25px);}
+    100% { opacity:1; -ms-transform:  translate(0px,0px);}
+  }
+  .loginButton{
+    border-radius: 6px;
+    box-shadow: rgb(0 0 0 / 15%) 0px 5px 15px 0px;
+  }
+  .loginCard{
+      width: 143px;
+      height: 134px;
+      box-shadow: 0px 3px 6px #0000000A;
+      border: 1px solid #F6F6F6;
+      border-radius: 8px;
+      
+  }
+  .loginCard:hover{
+    border: 1px solid #22E9D5;
+  }
+  .loginTitle{
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .cardImg{
+    height: 52px;
+    width: 52px;
+  }
+  .signInButton{
+    background-color: #22E9D5;
+    border-radius: 4px;
+    color: #FFFFFF;
+    box-shadow: 0px 0px 4px #22e9d5;
+  }
+  .error-red{
+    color:#E43B3B;
+  }
+  .margin-right{
+    @include breakpoint-lt-m{
+      margin-right: 5rem;
+    }
+    
+  }
+
+  //loading
+  
+$offset: 187;
+$duration: 1.4s;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash $duration ease-in-out infinite, 
+    colors ($duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+  0% { stroke: #4285F4; }
+  25% { stroke: #DE3E35; }
+  50% { stroke: #F7C223; }
+  75% { stroke: #1B9A59; }
+  100% { stroke: #4285F4; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
+}
+  

@@ -1,0 +1,36 @@
+<form [formGroup]="questionForm" class="pl-2" id="questionForm">
+    <div class="flex flex-col">
+        <label>
+            <b>Title</b>
+        </label>
+        <mat-form-field appearance="outline" class="margin-top-xs hoverPrimaryColor">
+            <input matInput type="text" placeholder="Enter your question title" value="question.Text"
+                formControlName="title">
+        </mat-form-field>
+    </div>
+</form>
+<div *ngIf="!optionsLoading" class="flex flex-center">
+    <svg class="spinner" width="40px" height="40px" viewBox="0 0 66 66"
+        xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30">
+        </circle>
+    </svg>
+</div>
+<div #container></div>
+<div class="flex flex-center fadeindownAnimation" *ngIf="optionsLoading">
+    <button mat-raised-button type="submit" id="addOptions" (click)="optionsAdded()"
+        class="flex flex-middle margin-top-xs mat-raised-button flex-center  p-2 optionsButton w-1/2">
+        <span class="font-weight-500 text-sm">Add Options</span>
+    </button>
+</div>
+<div class="flex flex-end flex-center">
+    <button mat-raised-button type="submit" (click)="onSubmit()" *ngIf="!submitting"
+        class="flex flex-middle margin-top-xs mat-raised-button flex-center p-2 submitButton w-full">
+        <span class="font-weight-500 text-sm" >Save</span>
+    </button>
+    <div *ngIf="submitting">
+        <svg class="spinner" width="40px" height="40px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+         </svg>
+    </div>
+</div>

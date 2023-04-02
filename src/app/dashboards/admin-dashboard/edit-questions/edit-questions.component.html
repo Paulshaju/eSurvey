@@ -1,0 +1,35 @@
+<div class="backgroundDiv p-4 fadeindownAnimation">
+    <p class="title pl-2">Edit questions</p>
+    <p class="taskSubtitle gray-color  pl-2">Here you can edit the available questions. Once you have uploaded this
+        will be available in the portal. Please click on a question to edit.</p>
+    <div *ngIf="!questionsLoading" class="flex flex-center">
+        <svg class="spinner" width="40px" height="40px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+        </svg>
+    </div>
+    <ng-container *ngIf="questions?.length == 0 && questionsLoading">
+        <div class="flex flex-center flex-middle h-full flex-col">
+            <img src='../../../assets/images/nodata.svg' class="imageIcon mb-2" />
+            <p class="title">No Questions available at the moment.</p>
+            <p class="taskSubtitle gray-color">Please try again later</p>
+        </div>
+    </ng-container>
+    <mat-accordion *ngIf="questions && questions.length > 0 && questionsLoading">
+        <ng-container *ngFor="let question of questions; let i = index">
+            <mat-expansion-panel hideToggle class="questionExpansionPanel" *ngIf="questionRespondedCondition"
+            [expanded]="panelExpanded" [disabled]="checkDisabled(question.id)" matTooltip="{{tooltipMessage}}">
+                <mat-expansion-panel-header class="expansionPanelHeader">
+                    <mat-panel-title>
+                        <p class="gray-color taskSubtitle mr-2 margin-remove-bottom">{{question.id}}</p>.<p class="font-weight-500 pl-2 margin-remove-bottom">{{question.Text}}</p>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <ng-template matExpansionPanelContent>
+                    <app-edit-question-form [questionText] = "question.Text" [id]="question.id" (result)="updatedSuccessfull($event)"> </app-edit-question-form>
+                  </ng-template>
+                
+            </mat-expansion-panel>
+        </ng-container>
+
+    </mat-accordion>
+
+</div>

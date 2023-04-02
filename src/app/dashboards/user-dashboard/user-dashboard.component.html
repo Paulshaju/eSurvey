@@ -1,0 +1,148 @@
+<div class="w-full h-full fadeindownAnimation">
+    <mat-drawer-container class="example-container w-full h-full overflow-x-hidden" autosize>
+        <mat-drawer #drawer class="example-sidenav w-1/12 sideNav m-2 py-5" mode="side" opened>
+            <div class="flex flex-center flex-col flex-middle h-full">
+                <img src='../../../assets/images/logo.png' class="logo" />
+                <div class="flex flex-center flex-col flex-middle h-full w-full">
+                    <button mat-stroked-button
+                        class="sidenavButton mat-button position-relative flex flex-center flex-col flex-middle margin-bottom-l p-2 w-full">
+                        <img src='../../../assets/images/homeIcon.svg' class="icon" />
+                    </button>
+                    <button mat-stroked-button
+                        class="sidenavButton mat-button position-relative flex flex-center flex-col flex-middle margin-bottom-l p-2 w-full">
+                        <img src='../../../assets/images/newIcon.svg' class="icon" />
+                    </button>
+                    <button mat-stroked-button
+                        class="sidenavButton mat-button position-relative flex flex-center flex-col flex-middle margin-bottom-l p-2 w-full">
+                        <img src='../../../assets/images/surveyIcon.svg' class="icon" />
+                    </button>
+                    <button mat-stroked-button
+                        class="sidenavButton mat-button position-relative flex flex-center flex-col flex-middle margin-bottom-l p-2 w-full">
+                        <img src='../../../assets/images/settingsIcon.svg' class="icon" />
+                    </button>
+                </div>
+                <div class="w-full">
+                    <button mat-stroked-button
+                        class="sidenavButton mat-button flex flex-center position-relative flex-col flex-middle my-4 p-2 w-full" (click)="logOutClicked()">
+                        <img src='../../../assets/images/logout.svg' class="icon" />
+                    </button>
+                </div>
+
+            </div>
+
+        </mat-drawer>
+        <div class="h-full mainBody p-10 w-full">
+            <div class="flex subBodyBox">
+                <div class="w-3/4 mainDiv">
+                    <div class="mr-4">
+                        <div class="flex flex-between flex-middle h-20 mb-3 p-3 w-full welcomeBox">
+                            <div class="flex flex-middle">
+                                <img src='../../../assets/images/useraccount.jpg' class="imageIcon" />
+                                <div class="flex flex-baseline">
+                                    <p class="welcomTitle">Welcome back!</p>
+                                    <p class="name">{{name}}</p>
+                                </div>
+
+                            </div>
+
+                            <!-- <div class="flex flex-around">
+                                <button mat-icon-button class="flex flex-center mat-raised-button p-2 icon-Button mr-4">
+                                    <mat-icon>search</mat-icon>
+                                </button>
+                                <button mat-icon-button class="flex flex-center mat-raised-button p-2 icon-Button">
+                                    <mat-icon>notifications</mat-icon>
+                                </button>
+
+                            </div> -->
+                        </div>
+
+                    </div>
+                    <div class="h-56 mr-4 position-relative mb-3">
+                        <img [src]='activeImage' class="h-56 newImage" />
+                        <div class="coverTitle flex flex-between flex-col h-40 h-56 p-5 w-full ">
+                            <div class="featuredBlock p-2">
+                                <p class="margin-remove-bottom text-white">Featured</p>
+                            </div>
+                            <div class="w-3/4 newsBox">
+                                <h1 class="margin-remove-bottom newsTitle w-3/4">{{featuredNewsTitle}}</h1>
+                                <h2 class="w-3/4 subTitle">{{subTitle}}</h2>
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                    <div class="flex flex-between flex-center h-56 mb-3 mr-4 p-3 surveyBlock" *ngIf="!surveyStarted">
+                        <img src='../../../assets/images/survey.png' class="surveyImage" />
+                        <div class="flex flex-col flex-end ml-10">
+                            <p class="posterTitle">Hey,Help us with some quick questions</p>
+                            <p class="gray-color margin-remove-bottom">Please help us with a couple of questions and
+                                earn 100 points!</p>
+                            <p class="gray-color">This survey is supported by</p>
+                            <div class="flex flex-between flex-middle">
+                                <img src='../../../assets/images/logo.png' class="logo" />
+                                <button mat-raised-button (click)="surveyClicked()" *ngIf="!submission"
+                                    class="flex flex-center flex-middle getStartedButton mat-raised-button p-2 w-1/4">
+                                    <span class="font-weight-500 text-sm">Start</span>
+                                </button>
+                                <div *ngIf="submission">
+                                    <p class="title pl-2 margin-remove-bottom">Thank you for submitting your responses.Have a great day ahead.</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div *ngIf="surveyStarted && !submission" class="flex flex-between flex-center mb-3 mr-4 questionBlock">
+                        <app-surveyquestions class="h-full w-full" (result)="checkSubmissionisDone($event)"></app-surveyquestions>
+                    </div>
+
+                </div>
+
+                <div class="mr-4 w-1/4 trendinnewsBox">
+                    <mat-card class="backgroundImage mat-card mat-focus-indicator fadeindownAnimation"
+                        *ngIf="!newsLoading && trendingNews">
+                        <div class="">
+                            <div>
+                                <!-- <img src='../../../assets/images/useraccount.jpg' class="" /> -->
+                                <p class="newstrending">Trending News Across Town</p>
+                                <div class="slider custom-scorll-carousel" cdkDropList>
+                                    <div class="flex flex-center flex-col flex-middle mr-2 my-2 newsCard ng-star-inserted p-2"
+                                        *ngFor="let news of trendingNews">
+                                        <div>
+                                            <p class="margin-bottom-xs margin-remove-bottom text-sm">{{news.title}}</p>
+                                            <p class="gray-color margin-bottom-xs authorName">{{news.author}}</p>
+
+                                        </div>
+                                        <img [src]='news.thumbnail' class="newsImage" />
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                    </mat-card>
+                    <!-- <mat-card class="backgroundImage mat-card mat-focus-indicator fadeindownAnimation">
+                        <div class="">
+
+
+                        </div>
+                    </mat-card> -->
+
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+
+    </mat-drawer-container>
+
+</div>

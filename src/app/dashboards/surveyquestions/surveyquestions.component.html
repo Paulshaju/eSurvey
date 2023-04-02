@@ -1,0 +1,53 @@
+<div class="h-full main">
+    
+    <div class="loading-container" id="loadingContainer" *ngIf="!(questionsLoading && optionsLoading)">
+        <div class="flex flex-center loader">
+            <span class="loading-bar"></span>
+            <span class="loading-bar"></span>
+            <span class="loading-bar"></span>
+            <span class="loading-bar"></span>
+        </div>
+    </div>
+    <ng-container *ngIf="questions.length == 0 && questionsLoading">
+        <div class="flex flex-center flex-middle h-full flex-col">
+            <img src='../../../assets/images/nodata.svg' class="imageIcon mb-2" />
+            <p class="title">No Questions available at the moment.</p>
+            <p class="taskSubtitle gray-color">Please try again later</p>
+        </div>
+    </ng-container>
+    <div *ngIf="questions.length > 0 && questionsLoading">
+       
+        <mat-progress-bar *ngIf="questionsLoading && optionsLoading" mode="determinate" [value]='value'></mat-progress-bar>
+        <div *ngIf="questionsLoading && optionsLoading" class="flex flex-col flex-middle flex-center h-full">
+            
+            <div class="flex flex-col flex-middle p-5 question">
+                <p class="gray-color questionNumber ">{{currentQuestionId}} of {{totalQuestions}}</p>
+                <p class="font-weight-500 text-2xl fadeindownAnimation">{{questionsTitle}}</p>
+            </div>
+            <div class="w-full">
+                <div class="flex flex-between flex-wrap px-4">
+                    <ng-container *ngFor="let option of options; let i = index">
+                        <mat-card class="optionCard fadeindownAnimation w-full mb-3 flex flex-center ">
+                            <mat-card-content class="gray-color">
+                                {{option.Text}}
+                                <mat-checkbox #checkbox="matCheckbox" [checked]="selected === i" (change)="selected = i"
+                                    class="example-margin" (click)="selectedOption(checkbox, option.id)"></mat-checkbox>
+                            </mat-card-content>
+                        </mat-card>
+                    </ng-container>
+                </div>
+                <div class="flex flex-center mb-3 px-4 fadeindownAnimation">
+                    <button mat-raised-button (click)="nextQuestions()"
+                        class="flex flex-center flex-middle nextButton mat-raised-button p-2 w-1/4">
+                        <span class="font-weight-500 text-sm">Submit</span>
+                    </button>
+                </div>
+            </div>
+    
+    
+        </div>
+    
+
+    </div>
+   
+</div>
